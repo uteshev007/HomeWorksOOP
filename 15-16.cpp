@@ -106,7 +106,7 @@ public:
     {
         cout << "Name: " << GetName() << endl;
         cout << "Total Spend: " << SumSpend << endl;
-        cout << "Budget: " << GetBudg() - SumSpend << endl;
+        cout << "Budget: " << (Budg -= SumSpend) << endl;
     }
 
 
