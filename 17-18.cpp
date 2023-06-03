@@ -23,59 +23,75 @@ c) операция "-" для определения разницы между 
 
 */
 
-class Time
+class Time 
 {
+private: 
+	int InSec;
 public:
-	Time() 
+	Time()
 	{
-		size = 3;
-		time = new int[size];
-
+		int InSec = 0;
 	}
-	~Time() { delete[] time; }
-
-	void SetTime()
+	Time(int InSec)
 	{
+		this->InSec += InSec;
+	}
+	~Time(){}
+
+	int SetTime(int sec)
+	{
+		return InSec = sec;
+	}
+
+	void PrintTime()
+	{
+
 		int hour, min, sec;
-		cout << "Enter hour: ";
-		cin >> hour;
-		time[0] = hour;
-		cout << "Enter minute: ";
-		cin >> min;
-		time[1] = min;
-		cout << "Enter second: ";
-		cin >> sec;
-		time[2] = sec;
+		hour = InSec / 3600;
+		min = (InSec - (hour * 3600)) / 60;
+		sec = (InSec - (hour * 3600)) - (min * 60);
+		cout << "Your time is: " << hour << ":" << min << ":" << sec << endl;
 	}
-	int* GetTime()
+
+	Time operator + (const Time& sec)
 	{
-		return time;
+		Time temp;
+		temp.InSec = this->InSec + sec.InSec;
+		return temp;
 	}
-	void Print()
+	Time operator - (int sec)
 	{
-			cout << "Your time is: " << endl;
-			cout << time[0] << ":" << time[1] << ":" << time[2];
+		Time temp;
+		temp.InSec = InSec - sec;
+		return temp;
 	}
-	
-	int operator + (const Time& t2)
+	Time operator - (const Time& sec)
 	{
-		return int (time[2] + t2.time[2]);
+		Time temp;
+		temp.InSec = this->InSec - sec.InSec;
+		temp.InSec = abs(temp.InSec);
+		return temp;
 	}
-
-
-
-private:
-	int *time;
-	int size;
-
-
+	int IncSec()
+	{
+		return InSec++;
+	}
 };
 
 int main()
 {
-	Time A, C; 
-	A.SetTime();
-	A.Print();
-	C.SetTime();
-	A + C;
+	Time A;
+	A.SetTime(83540);
+	A.PrintTime();
+	Time B;
+	B.SetTime(60);
+	Time C = A + B;
+	B.PrintTime();
+	C.PrintTime();
+	Time D = A - 120;
+	D.PrintTime();
+	Time E = D - A;
+	E.PrintTime();
+	E.IncSec();
+	E.PrintTime();
 }
