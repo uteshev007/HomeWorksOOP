@@ -105,8 +105,8 @@ int main()
 	Overcoat C("Coat", "Grey", 20000);
 	cout << A;
 	Overcoat D;
-	//cin >> D;
-	//cout << D;
+	cin >> D;
+	cout << D;
 	if (A == B)
 		cout << "obj Type == obj Type" << endl;
 	else
