@@ -48,27 +48,13 @@ public:
 	double GetEngine() const { return engine; }
 	int GetPrice() const { return price; }
 
-	
-
-	friend istream& operator >> (istream& is, cars obj)
+	friend ostream& operator << (ostream & os, cars & obj)
 	{
-		string temp;
-		int temp2 = 0;
-		double temp3 = 0;
-		cout << "Enter name of car: ";
-		is >> obj.name;
-		obj.SetName(temp);
-		cout << "Enter year of car: ";
-		is >> obj.year;
-		obj.SetYear(temp2);
-		cout << "Enter engine of car: ";
-		is >> obj.engine;
-		obj.SetEngine(temp3);
-		cout << "Enter price of car: ";
-		is >> obj.price;
-		obj.SetPrice(temp2);
-		return is;
-
+		os << "Name: " << obj.GetName();
+		os << "Year: " << obj.GetYear();
+		os << "Engine: " << obj.GetEngine();
+		os << "Price: " << obj.GetPrice();
+		return os;
 	}
 
 }; // cars;
@@ -76,8 +62,8 @@ public:
 class Salon
 {
 private:
-	vector<cars> SalonCars;
 public:
+	vector<cars> SalonCars;
 	void ShowCars(vector<cars>& SalonCars)
 	{
 		if (SalonCars.empty())
@@ -114,20 +100,39 @@ public:
 		obj.SetPrice(temp2);
 		SalonCars.push_back(obj);
 	}
+
+	void DelCar(vector<cars>& SalonCars)
+	{
+		cars temp;
+		string name;
+		cout << "Enter the name of deleting car: ";
+		cin >> name;
+		for (const auto& SalonCars : SalonCars)
+		{
+			SalonCars.GetName();
+			if (name == SalonCars.GetName())
+				temp = SalonCars.GetName();
+			else
+				cout << "Car is not found!";
+				
+		}
+	}
 }; // Salon
 
 
 int main()
 {
-	vector <cars> SalonCars;
+	Salon Aster;
+	//vector <cars> SalonCars;
 	cars Audi("TT", 2012, 2.0, 4000);
 	cars Toyota("Camry", 2018, 3.0, 8000);
 	cars Lada("Samara 2114", 2002, 1.6, 1000);
-	SalonCars.push_back(Audi);
-	SalonCars.push_back(Toyota);
-	SalonCars.push_back(Lada);
-	Salon Aster;
 	cars Mazda;
+	Aster.SalonCars.push_back(Audi);
+	Aster.SalonCars.push_back(Toyota);
+	Aster.SalonCars.push_back(Lada);
 	//Aster.AddCar(Mazda);
-	Aster.ShowCars(SalonCars);
+	Aster.ShowCars(Aster.SalonCars);
+	Aster.DelCar(Aster.SalonCars);
+	Aster.ShowCars(Aster.SalonCars);
 }
