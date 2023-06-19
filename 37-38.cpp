@@ -48,7 +48,7 @@ public:
 	double GetEngine() const { return engine; }
 	int GetPrice() const { return price; }
 
-	friend ostream& operator << (ostream & os, cars & obj)
+	friend ostream& operator << (ostream & os, const cars & obj)
 	{
 		os << "Name: " << obj.GetName();
 		os << "Year: " << obj.GetYear();
@@ -107,14 +107,13 @@ public:
 		string name;
 		cout << "Enter the name of deleting car: ";
 		cin >> name;
-		for (const auto& SalonCars : SalonCars)
+		vector <cars>::const_iterator it;
+		it = SalonCars.begin();
+		for (vector <cars>::const_iterator it = SalonCars.begin(); it != SalonCars.end(); it++)
 		{
-			SalonCars.GetName();
-			if (name == SalonCars.GetName())
-				temp = SalonCars.GetName();
-			else
-				cout << "Car is not found!";
-				
+			if()
+			cout << *it;
+			SalonCars.GetName() == name;
 		}
 	}
 }; // Salon
