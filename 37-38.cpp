@@ -1,4 +1,4 @@
-п»ї#include <iostream>
+#include <iostream>
 #include <iomanip>
 #include <vector>
 #include <string>
@@ -8,17 +8,14 @@
 struct LC { LC() { system("chcp 1251 > nul"); system("color E"); } }_;
 using namespace std;
 /*
-Р”РѕРјР°С€РЅРµРµ Р·Р°РґР°РЅРёРµ
-РўРµРјР°. РЎРїРёСЃРєРё. Р”РІСѓСЃРІСЏР·РЅС‹Р№ СЃРїРёСЃРѕРє
-
-РћР±СЏР·Р°С‚РµР»СЊРЅРѕРµ Р·Р°РґР°РЅРёРµ РѕРґРЅРѕ РёР· РґРІСѓС… РЅР° РІС‹Р±РѕСЂ
-
-Р—Р°РґР°РЅРёРµ 1 (РїРѕ С‚РµРјРµ РєР»Р°СЃСЃ vector<>)
-
-РЎРѕР·РґР°Р№С‚Рµ РїСЂРёР»РѕР¶РµРЅРёРµ РґР»СЏ СЂР°Р±РѕС‚С‹ Р°РІС‚РѕСЃР°Р»РѕРЅР°.
-РќРµРѕР±С…РѕРґРёРјРѕ С…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РїСЂРѕРґР°РІР°РµРјС‹С… Р°РІС‚РѕРјРѕР±РёР»СЏС… (РЅР°Р·РІР°РЅРёРµ, РіРѕРґ РІС‹РїСѓСЃРєР°, РѕР±СЉРµРј РґРІРёРіР°С‚РµР»СЏ, С†РµРЅСѓ).
-Р РµР°Р»РёР·СѓР№С‚Рµ РёРЅС‚РµСЂС„РµР№СЃ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РґР°РЅРЅС‹С…, СѓРґР°Р»РµРЅРёСЏ РґР°РЅРЅС‹С…, РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РґР°РЅРЅС‹С…, СЃРѕСЂС‚РёСЂРѕРІРєРµ РґР°РЅРЅС‹С… РїРѕ СЂР°Р·Р»РёС‡РЅС‹Рј РїР°СЂР°РјРµС‚СЂР°Рј, РїРѕРёСЃРєСѓ РґР°РЅРЅС‹С… РїРѕ СЂР°Р·Р»РёС‡РЅС‹Рј РїР°СЂР°РјРµС‚СЂР°Рј.
-РџСЂРё СЂРµР°Р»РёР·Р°С†РёРё РёСЃРїРѕР»СЊР·СѓР№С‚Рµ РєРѕРЅС‚РµР№РЅРµСЂ РІРµРєС‚РѕСЂ vector<> РёР· СЃС‚Р°РЅРґР°СЂС‚РЅРѕР№ Р±РёР±Р»РёРѕС‚РµРєРё С€Р°Р±Р»РѕРЅРѕРІ.
+Домашнее задание
+Тема. Списки. Двусвязный список
+Обязательное задание одно из двух на выбор
+Задание 1 (по теме класс vector<>)
+Создайте приложение для работы автосалона.
+Необходимо хранить информацию о продаваемых автомобилях (название, год выпуска, объем двигателя, цену).
+Реализуйте интерфейс для добавления данных, удаления данных, отображения данных, сортировке данных по различным параметрам, поиску данных по различным параметрам.
+При реализации используйте контейнер вектор vector<> из стандартной библиотеки шаблонов.
 */
 
 class cars
@@ -31,8 +28,8 @@ private:
 public:
 	cars() : name("Unknown"), year(), engine(), price() {}
 	cars(string name) : cars() { this->name = name; }
-	cars(string name, int year, double engine, int price) 
-	{ 
+	cars(string name, int year, double engine, int price)
+	{
 		this->name = name;
 		this->year = year;
 		this->engine = engine;
@@ -48,7 +45,7 @@ public:
 	double GetEngine() const { return engine; }
 	int GetPrice() const { return price; }
 
-	friend ostream& operator << (ostream & os, const cars & obj)
+	friend ostream& operator << (ostream& os, const cars& obj)
 	{
 		os << "Name: " << obj.GetName();
 		os << "Year: " << obj.GetYear();
@@ -72,13 +69,13 @@ public:
 		cout << "       List of cars in this salon" << endl;
 		for (const auto& SalonCars : SalonCars)
 		{
-			cout << "____________________________________________" << endl;	
+			cout << "____________________________________________" << endl;
 			cout << "Name: " << SalonCars.GetName() << endl;
 			cout << "Year: " << SalonCars.GetYear() << endl;
 			cout << "Engine: " << SalonCars.GetEngine() << endl;
 			cout << "Price: " << SalonCars.GetPrice() << endl;
 		}
-			cout << "____________________________________________" << endl;
+		cout << "____________________________________________" << endl;
 	}
 
 	void AddCar(cars& obj)
@@ -101,19 +98,27 @@ public:
 		SalonCars.push_back(obj);
 	}
 
-	void DelCar(vector<cars>& SalonCars)
+	void DelCar(string name)
 	{
 		cars temp;
-		string name;
+		//string name;
 		cout << "Enter the name of deleting car: ";
 		cin >> name;
-		vector <cars>::const_iterator it;
-		it = SalonCars.begin();
-		for (vector <cars>::const_iterator it = SalonCars.begin(); it != SalonCars.end(); it++)
+		int idx = -1;
+		for (int i = 0; i < SalonCars.size(); i++)
 		{
-			if()
-			cout << *it;
-			SalonCars.GetName() == name;
+			if (SalonCars[i].GetName() == name)
+			{
+				idx = i;
+				break;
+			}
+		}
+		if (idx != -1)
+		{
+			vector <cars>::const_iterator it;
+			it = SalonCars.begin();
+			advance(it, idx);
+			SalonCars.erase(it);
 		}
 	}
 }; // Salon
@@ -132,6 +137,6 @@ int main()
 	Aster.SalonCars.push_back(Lada);
 	//Aster.AddCar(Mazda);
 	Aster.ShowCars(Aster.SalonCars);
-	Aster.DelCar(Aster.SalonCars);
+	Aster.DelCar("");
 	Aster.ShowCars(Aster.SalonCars);
 }
