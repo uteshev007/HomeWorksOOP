@@ -101,19 +101,27 @@ public:
 		SalonCars.push_back(obj);
 	}
 
-	void DelCar(vector<cars>& SalonCars)
+	void DelCar(string name)
 	{
 		cars temp;
-		string name;
+		//string name;
 		cout << "Enter the name of deleting car: ";
 		cin >> name;
-		vector <cars>::const_iterator it;
-		it = SalonCars.begin();
-		for (vector <cars>::const_iterator it = SalonCars.begin(); it != SalonCars.end(); it++)
+		int idx = -1;
+		for (int i = 0; i < SalonCars.size(); i++)
 		{
-			if()
-			cout << *it;
-			SalonCars.GetName() == name;
+			if (SalonCars[i].GetName() == name)
+			{
+				idx = i;
+				break;
+			}
+		}
+		if (idx != -1)
+		{
+			vector <cars>::const_iterator it;
+			it = SalonCars.begin();
+			advance(it, idx);
+			SalonCars.erase(it);
 		}
 	}
 }; // Salon
@@ -132,6 +140,6 @@ int main()
 	Aster.SalonCars.push_back(Lada);
 	//Aster.AddCar(Mazda);
 	Aster.ShowCars(Aster.SalonCars);
-	Aster.DelCar(Aster.SalonCars);
+	Aster.DelCar("");
 	Aster.ShowCars(Aster.SalonCars);
 }
